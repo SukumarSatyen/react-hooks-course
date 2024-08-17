@@ -16,10 +16,10 @@ A Hook that lets you perform side effects in function components.
 - `useEffect(() => { console.log("FUNCTION WAS CALLED"); }, [returnComment]);`: Logs a message to the console whenever the returnComment function reference changes, demonstrating when the Child component re-renders.
 - A side effect refers to any operation that affects the state outside of the function's scope or interacts with the outside world. This can include:
 
-    Modifying a global variable or an object passed by reference.
-    Performing I/O operations, such as reading from or writing to a file or database.
-    Making network requests or API calls.
-    Logging information to the console.
+    - Modifying a global variable or an object passed by reference.
+    - Performing I/O operations, such as reading from or writing to a file or database.
+    - Making network requests or API calls.
+    - Logging information to the console.
 
 
 ### Child Component
