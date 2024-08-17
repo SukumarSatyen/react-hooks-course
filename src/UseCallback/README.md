@@ -94,7 +94,7 @@ Then,
 
 This cycle of user interaction → state update → re-render continues throughout the lifecycle of the application, with Child only re-rendering if the `data` state in CallBackTutorial changes, causing a new reference of `returnComment` to be created.
 
-## URL of React Documentation Reference
+## React Dev Reference
 
 - useState: https://react.dev/reference/react/useState
 - useCallback: https://react.dev/reference/react/useCallback
