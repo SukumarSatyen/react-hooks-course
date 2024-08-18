@@ -35,9 +35,6 @@ A component that is nested within another component (the parent component).
 
 ## Operations
 
-First is the mounting of the CallBackTutorial component. 
-
-Then,
 1. CallBackTutorial component starts mounting:
    - React processes the import statements, bringing in necessary dependencies (axios, useState, useCallback, and the Child component).
 
