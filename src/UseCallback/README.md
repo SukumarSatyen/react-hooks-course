@@ -10,7 +10,12 @@ A Hook that lets you add React state to function components.
 ### useCallback
 A Hook that lets you cache a function definition between re-renders.
 - `const returnComment = useCallback((name) => { return data + name; }, [data]);`: Memoizes the returnComment function, preventing unnecessary re-renders of the Child component unless the 'data' dependency changes.
-
+- Memoization is widely used in React for performance optimization
+      - React provides built-in hooks like useMemo and useCallback that implement memoization. These hooks are used to optimize expensive calculations and prevent unnecessary re-renders of components.
+      - Memoization can be used in various contexts beyond simple function caching, and for purposes other than speed gains, such as in simple mutually recursive descent parsing.
+      - Memoization is specifically about caching function results, unlike other forms of caching that might deal with data storage or retrieval.
+      - Specific implementation of Memoization in logic programming languages is also known as tabling.
+  
 ### useEffect
 A Hook that lets you perform side effects in function components.
 - `useEffect(() => { console.log("FUNCTION WAS CALLED"); }, [returnComment]);`: Logs a message to the console whenever the returnComment function reference changes, demonstrating when the Child component re-renders.
