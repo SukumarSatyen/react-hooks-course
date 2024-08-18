@@ -48,7 +48,14 @@ A component that is nested within another component (the parent component).
 
 3. `useCallback` is executed:
    - React creates a memoized version of the `returnComment` function.
+   - **Memoization Explanation**: 
+     - useCallback memoizes the function definition itself, not the function's output.
+     - It stores the function reference, creating a new reference only if the dependencies change.
+     - This differs from traditional memoization, which caches function results based on input.
+     - In this case, the entire function `(name) => { return data + name; }` is stored and reused.
    - The function is memoized with `data` as a dependency, meaning it will only be recreated if `data` changes.
+     - The stored function reference will only change if `data` changes.
+     - This ensures stable function identity across re-renders when `data` remains the same.
 
 4. The JSX in the return statement of CallBackTutorial is evaluated:
    - React processes the JSX, creating a virtual DOM representation.
@@ -87,6 +94,10 @@ A component that is nested within another component (the parent component).
     - `useState` and `useCallback` hooks are called again:
       - `toggle` state is updated with its new value.
       - `data` state remains unchanged.
+      - **Memoization in Action**: 
+        - `useCallback` checks its dependencies (`[data]`).
+        - Since `data` hasn't changed, it returns the same function reference as before.
+        - This demonstrates how useCallback caches the function definition, not its result.
       - `returnComment` function is not recreated as `data` hasn't changed.
 
 13. JSX in CallBackTutorial is re-evaluated:
@@ -94,6 +105,10 @@ A component that is nested within another component (the parent component).
 
 14. Child component is encountered again:
     - React checks if any props have changed.
+    - **Benefit of Memoization**:
+      - `returnComment` is the same reference as before, thanks to useCallback.
+      - React determines that Child's props haven't changed.
+      - Child component is not re-rendered, preventing unnecessary computation.
     - `returnComment` is the same reference as before (thanks to useCallback), so Child is not re-rendered.
 
 15. React completes the re-render:
@@ -103,6 +118,8 @@ A component that is nested within another component (the parent component).
 16. The application is now in its updated state, again waiting for user interaction.
 
 This cycle of user interaction → state update → re-render continues throughout the lifecycle of the application, with Child only re-rendering if the `data` state in CallBackTutorial changes, causing a new reference of `returnComment` to be created.
+
+This cycle continues throughout the application's lifecycle. The key point is that useCallback memoizes the function definition itself, providing a stable function reference. This stability prevents unnecessary re-renders of Child, as React can quickly determine that the prop hasn't changed. The actual caching of function results (what `returnComment` returns) doesn't occur here; instead, it's the function's identity that's preserved across renders, which is crucial for optimizing React's reconciliation process.
 
 ## React Dev Reference
 
